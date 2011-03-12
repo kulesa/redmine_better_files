@@ -1,3 +1,26 @@
-= better_files
+= Redmine Better Files
 
-Description goes here
+The plugin imroves functionality of Redmine Files and Attachments
+
+== Features
+
+- File names include Project name and Issue number
+
+== Installation and Setup
+
+1. Go to your #{RAILS_ROOT}/vendor/plugins directory
+2. Run 'git clone git://github.com/kulesa/redmine_better_files.git'. Or if you don't have git, click '*Download*' button on this page, save and unpack archive in plugins directory.
+3. Restart Redmine
+
+You should now see the plugin in *Administration* -> *Plugins*. The plugin does not require any database migrations.
+
+== Helping out
+
+If you notice any problems, please report them to the GitHub issue tracker {here}[https://github.com/kulesa/redmine_better_files/issues]. Feel free to contact me via GitHub or Twitter 
+or whatever with any other questions or feature requests. To submit changes fork the project and send a pull request.
+
+== License
+
+Redmine Better Files is released under MIT license.
+
+
