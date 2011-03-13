@@ -5,8 +5,10 @@
 <h2><%=l(:label_attachment_plural)%></h2>
 
 <% delete_allowed = User.current.allowed_to?(:manage_files, @project) %>
-
-<div><p><%= pagination_links @file_pages, :prefix => l(:label_previous) + " ", :suffix => " " + l(:label_next) %></p></div>
+<div>
+  <div style='float:left'><p><%= pagination_links_full @file_pages %></div>
+  <div style='float:right'><p><%= per_page_links %></div>
+</div>
 <table class="list files">
   <thead><tr>
     <%= sort_header_tag('filename', :caption => l(:field_filename)) %>
@@ -41,5 +43,5 @@
   <% end %>
   </tbody>
 </table>
-<div><p><%= pagination_links @file_pages, :prefix => l(:label_previous) + " ", :suffix => " " + l(:label_next) %></p></div>
+<div><p><%= pagination_links_full @file_pages %></div>
 <% html_title(l(:label_attachment_plural)) -%>

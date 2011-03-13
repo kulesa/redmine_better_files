@@ -17,10 +17,12 @@ module RedmineBetterFiles
                     'size' => "#{Attachment.table_name}.filesize",
                     'downloads' => "#{Attachment.table_name}.downloads"
                 
-        @file_pages, @files = paginate :attachments, :conditions => { :container_type => "Project", :container_id => @project.id},
-                              :order => sort_clause
-#        @containers = [ Project.find(@project.id, :include => :attachments, :order => sort_clause)]
-#        @containers += @project.versions.find(:all, :include => :attachments, :order => sort_clause).sort.reverse
+        per_page = params[:per_page].nil? ? Setting.per_page_options_array.first : params[:per_page].to_i
+ 
+        @file_pages, @files = paginate :attachments, 
+                              :conditions => { :container_type => "Project", :container_id => @project.id},
+                              :order => sort_clause,
+                              :per_page => per_page
         render :layout => !request.xhr?
       end
     end
