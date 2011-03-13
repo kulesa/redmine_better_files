@@ -4,7 +4,9 @@ The plugin imroves functionality of Redmine Files and Attachments
 
 == Features
 
-- File names include Project name and Issue number
+- File names include Project name and Issue number - it will be easier to remember where you have downloaded this file from
+- Image previews on Files page
+- Pagination on Files page
 
 == Installation and Setup
 
