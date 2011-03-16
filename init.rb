@@ -4,10 +4,10 @@ require 'dispatcher'
 Dispatcher.to_prepare :redmine_better_files do 
   require_dependency 'attachments_controller'
 
-  unless AttachmentsController.included_modules.include? RedmineBetterFiles::AttachmentsDownloadPatch
-    AttachmentsController.send(:include, RedmineBetterFiles::AttachmentsDownloadPatch)
+  unless Attachment.included_modules.include? RedmineBetterFiles::AttachmentPatch
+    Attachment.send(:include, RedmineBetterFiles::AttachmentPatch)
   end
-
+  
   unless FilesController.included_modules.include? RedmineBetterFiles::FilesPaginationPatch
     FilesController.send(:include, RedmineBetterFiles::FilesPaginationPatch)
   end
