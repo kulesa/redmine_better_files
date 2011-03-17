@@ -20,7 +20,7 @@ module RedmineBetterFiles
         per_page = params[:per_page].nil? ? Setting.per_page_options_array.first : params[:per_page].to_i
  
         @file_pages, @files = paginate :attachments, 
-                              :conditions => { :container_type => "Project", :container_id => @project.id},
+                              :conditions => ["select count(a.id) from attachments a, issues i where (a.container_type = ? and a.container_id = ?) or (a.container_type = ? and i.id = a.container_id and i.project_id = ?)", 'Project', @project.id, 'Issue', @project.id],
                               :order => sort_clause,
                               :per_page => per_page
         render :layout => !request.xhr?
