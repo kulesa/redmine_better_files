@@ -21,15 +21,15 @@
   <tbody>
   <% @files.each do |file| %>		
     <tr class="file <%= cycle("odd", "even") %>">
-      <td class="filename"><%= link_to_attachment file, :download => true, :title => file.description %></td>
+      <td class="filename"><%= link_to_attachment_with_download_name file, :download => true, :title => file.description %></td>
       <td class="created_on"><%= format_time(file.created_on) %></td>
       <td class="filesize"><%= number_to_human_size(file.filesize) %></td>
       <td class="downloads"><%= file.downloads %></td>
       <td class="digest">
       <% if file.image? %>
           <div class="attachments">
-            <%= link_to image_tag(url_for({:controller => 'attachments', :action => 'show', :id => file, :filename => file.filename }), :width => '180'), 
-            {:controller => 'attachments', :action => 'show', :id => file, :filename => file.filename }, :class => 'lightbox', :rel => 'attachments', :title => "#{file.filename}#{ ('-' + file.description) unless file.description.blank? }" %>
+            <%= link_to image_tag(url_for({:controller => 'attachments', :action => 'show', :id => file, :filename => file.download_name }), :width => '180'), 
+            {:controller => 'attachments', :action => 'show', :id => file, :filename => file.download_name }, :class => 'lightbox', :rel => 'attachments', :title => "#{file.filename}#{ ('-' + file.description) unless file.description.blank? }" %>
           </div>
       <% else %>
         <%= file.digest %>
