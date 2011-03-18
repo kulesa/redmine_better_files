@@ -58,4 +58,8 @@ describe FilesController, '#index' do
     get :index
     response.should_not have_text(/#{@another_issue_attachment.filename}/)
   end
+
+  it 'should display project nested ul' do 
+    pending
+  end
 end

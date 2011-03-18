@@ -20,6 +20,7 @@ module RedmineBetterFiles
         per_page = params[:per_page].nil? ? Setting.per_page_options_array.first : params[:per_page].to_i
         
         # This should select attachments for current Project and Issues of current project
+        # TODO: move to model
         basic_query = "attachments.id in (select a.id from attachments a left join projects p on (p.id = a.container_id) 
                                                              left join issues i on (i.id = a.container_id)
                                                              where (p.id = ? and a.container_type = 'Project') or 
