@@ -7,10 +7,15 @@ describe FilesController, '#index' do
   before(:all) do
     @tracker = Factory(:tracker)
     @project = Factory(:project)
+    @another_project = Factory(:project)
+    
     @project_attachment = Factory(:attachment, :container => @project)
+    @another_project_attachment = Factory(:attachment, :container => @another_project)
 
     @issue = Factory(:issue, :project => @project, :tracker => @tracker)
+    @another_issue = Factory(:issue, :project => @another_project, :tracker => @tracker)
     @issue_attachment = Factory(:attachment, :container => @issue)
+    @another_issue_attachment = Factory(:attachment, :container => @another_issue)
   end
 
   before(:each) do
@@ -37,5 +42,20 @@ describe FilesController, '#index' do
     get :index
     response.should have_text(/#{@project_attachment.filename}/)
     response.should have_text(/#{@project_attachment.download_name}/)
+  end
+
+  it 'should display issue attachment on files tab' do
+    get :index
+    response.should have_text(/#{@issue_attachment.download_name}/)
+  end
+
+  it 'should not display attachments of another project' do
+    get :index
+    response.should_not have_text(/#{@another_project_attachment.filename}/)
+  end
+
+  it 'should not display issue attachments of an issue from another project' do 
+    get :index
+    response.should_not have_text(/#{@another_issue_attachment.filename}/)
   end
 end
