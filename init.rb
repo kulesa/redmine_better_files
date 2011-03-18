@@ -34,4 +34,4 @@ Redmine::Plugin.register :redmine_better_files do
   author_url 'http://github.com/kulesa'
 end
 
-require_dependency 'is_taggable'
+# require_dependency 'is_taggable'
