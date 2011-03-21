@@ -13,7 +13,6 @@ Factory.define :project do |p|
   p.sequence(:name) {|n| "project#{n}"}
   p.identifier {|u| u.name }
   p.is_public true
-  # enabled_modules
 end
 
 Factory.define :tracker do |t| 
