@@ -16,5 +16,22 @@ module ApplicationHelper
 
     link_to(h(text), {:controller => 'attachments', :action => action, :id => attachment, :filename => attachment.download_name }, options)
   end
+
+  # Generates string like 'Project1 >> Project2 >> Project3' with links to the projects
+  def column_with_nested_projects(project)
+      b = []
+      ancestors = (project.root? ? [] : project.ancestors.visible)
+      if ancestors.any?
+        root = ancestors.shift
+        b << link_to_project(root, {:jump => current_menu_item}, :class => 'root')
+        if ancestors.size > 1
+          b << '&#8230;'
+          ancestors = ancestors[-1, 1]
+        end
+        b += ancestors.collect {|p| link_to_project(p, {:jump => current_menu_item}, :class => 'ancestor') }
+      end
+      b << link_to_project(project, {:jump => current_menu_item}, :class => 'ancestor') 
+      b.join(' &#187; ')
+  end
 end
 

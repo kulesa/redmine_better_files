@@ -50,12 +50,13 @@ describe FilesController, '#index' do
   end
 
   it 'should not display attachments of another project' do
-    get :index
+    get :index, :project_id => @project.id
     response.should_not have_text(/#{@another_project_attachment.filename}/)
   end
 
   it 'should not display issue attachments of an issue from another project' do 
-    get :index
+    get :index, :project_id => @project.id
     response.should_not have_text(/#{@another_issue_attachment.filename}/)
   end
+
 end
