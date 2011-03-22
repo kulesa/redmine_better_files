@@ -30,7 +30,7 @@ module RedmineBetterFiles
         per_page = params[:per_page].nil? ? Setting.per_page_options_array.first : params[:per_page].to_i
         
         # This should select attachments for current Project and Issues of current project
-        # TODO: move to model. Hell, this is ugly.
+        # TODO: move to model. Hell, this is seriously wrong.
         if @project.nil?
           basic_query = "select count(distinct a.id) from attachments a, projects p, issues i
                          where (a.container_type = 'Project' and a.container_id = p.id and p.status = 1) 
