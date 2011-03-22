@@ -7,7 +7,8 @@ The plugin changes Redmine Files and Attachments functionality.
 - File names include Project name and Issue number - it will be easier to remember where you have downloaded this file from
 - Image previews on Files page
 - Pagination on Files page (items per page selector is configured in Redmine Settings)
-- Issue attachments displayed on Files tab
+- Issue attachments displayed on Files tab along with project files
+- Global /files view shows all files available to the user
 
 == Installation and Setup
 
