@@ -59,4 +59,10 @@ describe FilesController, '#index' do
     response.should_not have_text(/#{@another_issue_attachment.filename}/)
   end
 
+  it 'should not fail on non-existant container' do 
+    @issue.delete
+    get :index
+    response.should be_success
+  end
+
 end
